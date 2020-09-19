@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>麻花疼幸运抽奖大转盘</title>
+<link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+
+<div class="box-lottery">
+	<div class="lottery-wrap" style="transform: rotate(-45deg);">
+		<span class="lottery-span1" data-id="8">
+			<i>网线<br>1根</i><img src="img/lottery_01.png" alt="网线1根">
+		</span>
+		<span class="lottery-span2" data-id="7">
+			<i>网线<br>2根</i><img src="img/lottery_02.png" alt="网线2根">
+		</span>
+		<span class="lottery-span3" data-id="6">
+			<i>破解版路由器<br>1台</i><img src="img/lottery_03.png" alt="破解版路由器">
+		</span>
+		<span class="lottery-span4" data-id="5">
+			<i>红包<br>66.6元</i><img src="img/lottery_04.png" alt="红包66.6">
+		</span>
+		<span class="lottery-span5" data-id="1">
+			<i>谢谢参与</i><img src="img/lottery_05.png" alt="谢谢参与">
+		</span>
+		<span class="lottery-span6" data-id="4">
+			<i>电信宽带<br>1个</i><img src="img/lottery_06.png" alt="电信宽带">
+		</span>
+		<span class="lottery-span7" data-id="3">
+			<i>储物箱<br>1个</i><img src="img/lottery_07.png" alt="储物箱">
+		</span>
+		<span class="lottery-span8" data-id="2">
+			<i>红包<br>18.8</i><img src="img/lottery_08.png" alt="红包18.8">
+		</span>
+	</div>
+	<a class="lottery-btn" href="javascript:void(0);"><i></i>立即抽奖</a>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/lib/anime.min.js"></script>
+<script src="js/app/lottery.js"></script>
+<script>
+	alert("此抽奖系统，仅当面抽奖有效。");
+	var Lottery = Turntable.create();
+	var times = 1;
+	$('.lottery-btn').on('click', function(){
+		if(times<=0){
+			alert("抽奖次数不足");
+	        return;
+		}
+		var rateArry = new Array();
+		var rate = [50, 25, 3, 2, 5, 9, 1, 6];
+		var init = 0;
+		for (let i = 0; i < rate.length; i++) {
+			for(let j = 0; j < rate[i]; j++) {
+				rateArry.push(init)
+			}
+			init++;
+		}
+		var num = rateArry[Math.floor(Math.random() * rateArry.length)]; 
+		Lottery.start(num, function(index){
+			alert($('span').eq(index).find('i').text());
+			times--;
+			//console.log('index', index, 'lottery-span', 'lottery-span'+(index+1));
+		});
+	});
+
+</script>
+
+</body>
+</html>
